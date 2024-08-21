@@ -1,4 +1,3 @@
-# 
 Implantação do ambiente de serviços de Visão computacional (Kafka, MQTT, Câmeras)
 
 
@@ -78,6 +77,34 @@ No arquivo `rede_com_webcam.py`, implementamos a funcionalidade necessária para
 
 
 Como deve ser feita a aquisição e envio de Mensagens no MQTT, dependendo do tipo de serviço: 
+
+O serviço do MQTT funciona a partir de 3 partes básicas: 	
+Broker: O servidor central que gerencia as mensagens entre publicadores e assinantes.
+Publisher: Envia mensagens para um tópico específico.
+Subscriber: Recebe mensagens de um tópico específico.
+
+Um Publisher tem quer ter uma serie de dados de identificação, sendo eles a URL do broker, a porta referente ao serviço, o topíco de envio da mensagem, o identificador do cliente, além do usuário e senha do MQTT para conseguir mandar as mensagens. A seguir temos um exemplo da parte do código com os dados usados nos nossos testes.
+
+broker = 'b5b85536bc1e42009bf45c3e2997d02d.s2.eu.hivemq.cloud'
+port = 8883
+topic = "encyclopedia/temperature"
+# generate client ID with pub prefix randomly
+client_id = f'python-mqtt-{random.randint(0, 1000)}'
+username = -------
+password = -------
+
+No nosso programa, o servidor local Kafka já é um Publisher do MQTT que manda para o Broker online e manda para todos os Subscriber as mensagens de interesse.
+No caso do publisher, ele é responsável por enviar mensagens para um tópico específico. A estrutura da mensagem que ele envia geralmente inclui:
+Tópico: O caminho hierárquico que categoriza a mensagem.
+Payload: O conteúdo real da mensagem (os dados que você está enviando).
+QoS (Qualidade de Serviço): Define o nível de garantia de entrega.
+Retain Flag: Indica se o broker deve armazenar a última mensagem enviada para o tópico.
+Nosso ambiente foi pensando para que os tópicos das mensagens fosse caracterizado da urgência/hierarquia da mesma, enquanto o Payload seria a parte da mensagens que teria todo o seu conteúdo, isto é, nível da predição que a rede identificou, posição do Bounding box e atividade/objeto identificado. O QoS e o Retain Flag ficam como opção da aplicação que se deseja executar.
+ No caso de um Subscriber, também tem a parte temos que identificar que temos acesso às mensagens que serão recebidas pelo broker. A seguir tem outro exemplo de identificação.
+
+auth = {'username': "-------", 'password': "----------"}
+subscribe.callback(print_msg, "#", hostname="b5b85536bc1e42009bf45c3e2997d02d.s2.eu.hivemq.cloud", port=8883, auth=auth,
+               	tls=sslSettings, protocol=paho.MQTTv31)
 
 
 
