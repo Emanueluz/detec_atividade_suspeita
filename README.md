@@ -1,4 +1,4 @@
-Implantação do ambiente de serviços de Visão computacional (Kafka, MQTT, Câmeras)
+#Implantação do ambiente de serviços de Visão computacional (Kafka, MQTT, Câmeras)
 
 
 
@@ -39,7 +39,7 @@ src/kafka/consumer_to_MQTT.py # levar as mensagens do servidor kafka local para 
 
 
 
-Parte em relação às câmeras de segurança. 
+##Parte em relação às câmeras de segurança. 
 
 https://www.hikvisioneurope.com/eu/portal/portal/Technical%20Materials/00%20%20Network%20Camera/02%20%20Product%20User%20Manuals%20%28multi-language%29/99-OldUserManuals/13-Portuguese/UD04470B_Baseline_User%20Manual%20of%20Network%20Camera_V5.4.5_20170123_PT.pdf
 
