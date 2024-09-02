@@ -1,4 +1,4 @@
-#Implantação do ambiente de serviços de Visão computacional (Kafka, MQTT, Câmeras)
+# Implantação do ambiente de serviços de Visão computacional (Kafka, MQTT, Câmeras)
 
 
 
@@ -39,7 +39,7 @@ src/kafka/consumer_to_MQTT.py # levar as mensagens do servidor kafka local para 
 
 
 
-##Parte em relação às câmeras de segurança. 
+## Parte em relação às câmeras de segurança. 
 
 https://www.hikvisioneurope.com/eu/portal/portal/Technical%20Materials/00%20%20Network%20Camera/02%20%20Product%20User%20Manuals%20%28multi-language%29/99-OldUserManuals/13-Portuguese/UD04470B_Baseline_User%20Manual%20of%20Network%20Camera_V5.4.5_20170123_PT.pdf
 
@@ -88,7 +88,6 @@ Um Publisher tem quer ter uma serie de dados de identificação, sendo eles a UR
 broker = 'b5b85536bc1e42009bf45c3e2997d02d.s2.eu.hivemq.cloud'
 port = 8883
 topic = "encyclopedia/temperature"
-# generate client ID with pub prefix randomly
 client_id = f'python-mqtt-{random.randint(0, 1000)}'
 username = -------
 password = -------
